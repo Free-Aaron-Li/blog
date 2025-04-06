@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="第一章 开始 前言 介绍大部分C++的基础内容：类型、变量、表达式、语句及函数。简单介绍如何编译及运行程序。\n编写一个简单的程序，如编写记录书籍信息的程序，其必然包括一下内容：\n">
+<title>C&#43;&#43; 基础： 第一章 开始</title>
+
+<link rel='canonical' href='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="C++ 基础： 第一章 开始">
+<meta property='og:description' content="第一章 开始 前言 介绍大部分C++的基础内容：类型、变量、表达式、语句及函数。简单介绍如何编译及运行程序。\n编写一个简单的程序，如编写记录书籍信息的程序，其必然包括一下内容：\n">
+<meta property='og:url' content='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/'>
+<meta property='og:site_name' content='亚伦的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+<meta name="twitter:title" content="C++ 基础： 第一章 开始">
+<meta name="twitter:description" content="第一章 开始 前言 介绍大部分C++的基础内容：类型、变量、表达式、语句及函数。简单介绍如何编译及运行程序。\n编写一个简单的程序，如编写记录书籍信息的程序，其必然包括一下内容：\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_d0557925549c907f.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😁</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">亚伦的博客</a></h1>
+            <h2 class="site-description">开发、学习及趣事</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/630183635'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928299453" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1861" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.25" height="256"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="1862"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="1863"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Free-Aaron-Li/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928354280" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2983" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M512 0C229.283787 0 0.142041 234.942803 0.142041 524.867683c0 231.829001 146.647305 428.553077 350.068189 497.952484 25.592898 4.819996 34.976961-11.38884 34.976961-25.294314 0-12.45521-0.469203-45.470049-0.725133-89.276559-142.381822 31.735193-172.453477-70.380469-172.453477-70.380469-23.246882-60.569859-56.816233-76.693384-56.816234-76.693385-46.493765-32.58829 3.540351-31.948468 3.540351-31.948467 51.356415 3.71097 78.356923 54.086324 78.356923 54.086324 45.683323 80.19108 119.817417 57.072162 148.993321 43.593236 4.649376-33.91059 17.915029-57.029508 32.50298-70.167195-113.675122-13.222997-233.151301-58.223843-233.1513-259.341366 0-57.285437 19.919806-104.163095 52.678715-140.846248-5.246544-13.265652-22.820334-66.626844 4.990615-138.884127 0 0 42.996069-14.076094 140.760939 53.787741 40.863327-11.644769 84.627183-17.445825 128.177764-17.6591 43.465272 0.213274 87.271782 6.014331 128.135109 17.6591 97.679561-67.906489 140.59032-53.787741 140.59032-53.787741 27.938914 72.257282 10.407779 125.618474 5.118579 138.884127 32.844219 36.683154 52.593405 83.560812 52.593405 140.846248 0 201.586726-119.646798 245.990404-233.663158 258.957473 18.341577 16.208835 34.721032 48.199958 34.721032 97.210357 0 70.167195-0.639822 126.7275-0.639823 143.960051 0 14.033439 9.213443 30.370239 35.190235 25.209005 203.250265-69.527373 349.769606-266.123484 349.769605-497.867175C1023.857959 234.942803 794.673558 0 512 0" fill="#3E75C3" p-id="2984"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/en/" >English</option>
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#11-编写一个简单的c程序">1.1 编写一个简单的C++程序</a>
+      <ol>
+        <li><a href="#111-编译运行程序">1.1.1 编译、运行程序</a>
+          <ol>
+            <li><a href="#程序源文件命名约定">程序源文件命名约定</a></li>
+            <li><a href="#从命令行运行编译器">从命令行运行编译器</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#12-初识输入输出">1.2 初识输入输出</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#标准输入输出对象">标准输入输出对象</a></li>
+            <li><a href="#向流写入数据">向流写入数据</a></li>
+            <li><a href="#使用标准库中的名字">使用标准库中的名字</a></li>
+            <li><a href="#从流读取数据">从流读取数据</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#13-注释简介">1.3 注释简介</a></li>
+    <li><a href="#14控制流">1.4控制流</a>
+      <ol>
+        <li><a href="#141-while语句">1.4.1 while语句</a></li>
+        <li><a href="#142-for语句">1.4.2 for语句</a></li>
+        <li><a href="#143-读取数量不定的输入数据">1.4.3 读取数量不定的输入数据</a></li>
+        <li><a href="#144-if语句">1.4.4 if语句</a></li>
+      </ol>
+    </li>
+    <li><a href="#15-类简介">1.5 类简介</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" alt="Featured image of post C&#43;&#43; 基础： 第一章 开始" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >
+                C&#43;&#43; 学习笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/">C&#43;&#43; 基础： 第一章 开始</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 10 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="第一章-开始">第一章 开始
+</h1><h2 id="前言">前言
+</h2><p>介绍大部分C++的基础内容：类型、变量、表达式、语句及函数。简单介绍如何编译及运行程序。</p>
+<p>编写一个简单的程序，如编写记录书籍信息的程序，其必然包括一下内容：</p>
+<ul>
+<li>定义变量</li>
+<li>进行输入与输出</li>
+<li>使用数据结构保存数据</li>
+<li>检测两条记录是否存在相同的ISBN</li>
+<li>循环处理每条记录</li>
+</ul>
+<h2 id="11-编写一个简单的c程序">1.1 编写一个简单的C++程序
+</h2><p>每一个C++程序都包含一个或多个函数（function），其中一个必须使用<code>main</code>命名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个函数的定义包含<mark>四个部分</mark>，包括<code>返回类型</code>（return type）、<code>函数名</code>（function
+name）、<code>参数列表</code>（parameter list，运行为空）以及<code>函数体</code>（function body）。</p>
+<p><code>main</code>函数的返回类型必须为<code>int</code>，即为整数类型。int类型是一种<mark>内置类型</mark>
+（built-in-type），即语言自身定义的类型。</p>
+<p>函数定义定义的最后一部分为函数体，它是一个以左<code>花括号</code>（curly brace）开始，以右花括号结束的<code>语句块</code>
+（block of statements）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>return用于结束函数的执行，同时会返回一个值。当return语句包括一个值时，此返回值的类型必须与函数的返回类型相同。</p>
+<p>在大多数系统中，main的返回值被用来指示状态。返回值0表示成功，非0的返回值的含义由系统定义，通常用来指出错误类型。</p>
+<h3 id="111-编译运行程序">1.1.1 编译、运行程序
+</h3><h4 id="程序源文件命名约定">程序源文件命名约定
+</h4><p>无论使用的是命令行界面还是IDE(Integrated Developed Environment 集成开发环境)，大多数编译器都要求程序
+源码存储在一个或多个文件中。程序文件通常被成为<code>源文件</code>（source file）。文件后缀名用于告诉系统这个文件是一个
+C++程序。不同编译器使用不同的后缀名，在接下来笔者一直使用.cpp文件后缀名。</p>
+<h4 id="从命令行运行编译器">从命令行运行编译器
+</h4><p>在GNU/Linux下使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">g++ -o main main.cpp
+</span></span><span class="line"><span class="cl">./main
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$?</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用G++编译器编译<code>main.cpp</code>文件，运行并通过<code>echo $?</code>命令查看返回值结果</p>
+<hr>
+<h2 id="12-初识输入输出">1.2 初识输入输出
+</h2><p>C++语言并未定义任何输入输出（IO）语句，取而代之，包含了一个全面的<mark>标准库</mark>（standard library）来
+提供IO机制。</p>
+<p><code>iostrem</code>库，包含两个基础类型<code>istrem</code>和<code>ostream</code>，分别表示输入流和输出流。一个流就是一个字符序列，即从IO设备
+读出或写入IO设备的。术语“流（stream）”想要表达的是，随着时间的推移，字符是顺序生成或消耗的。</p>
+<h4 id="标准输入输出对象">标准输入输出对象
+</h4><p>标准库定义了4个IO对象。处理输入名为<code>cin</code>的istream类型对象，这个对象被称为<code>标准输入</code>（standard input）。
+处理输出，则用<code>cout</code>的ostream类型对象。也被称为<code>标准输出</code>（standard output）。此外，还定义了两个其他ostream
+对象，名为<code>cerr</code>和<code>clog</code>。cerr用来输出警告和错误信息，也被称为<code>标准错误</code>（standard
+error）。clog用来输出程序运行时的一般性信息。</p>
+<blockquote>
+<p>C++ 中的<code>clog</code>对象是类<code>ostream</code>的对象。它与标准 C 错误输出流<code>stderr</code>相关联。</p>
+<p>clog 和 cerr 都与 stderr 相关联，但它与 cerr 的不同之处在于 clog 中的流被缓冲并且不会自动与 cout 绑定。</p>
+<p>缓冲输出比无缓冲输出更有效。在缓冲输出的情况下，所有输出都保存到一个变量中并一次全部写入磁盘。对于无缓冲的输出，我们必须继续写入磁盘。</p>
+<p>缓冲输出不适用于严重错误。在系统崩溃的情况下，可能会出现输出仍在缓冲区中并且没有写入磁盘并且无法检索错误消息的情况。我们不能在系统崩溃的情况下丢失错误数据，因此即使速度较慢，我们也会继续将严重错误写入磁盘。</p>
+<p>clog 通常用于记录目的。对于非关键事件日志记录，效率更为重要，因此<code>clog</code>优于<code>cerr</code>。</p></blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Enter two numbers: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">value1</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value2</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value1</span> <span class="o">&gt;&gt;</span> <span class="n">value2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;The sum of &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">value1</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; and &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">value2</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; is &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">value1</span> <span class="o">+</span> <span class="n">value2</span>
+</span></span><span class="line"><span class="cl">              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>程序第一行告诉编译器需要使用iostream库。尖括号中的名字指出一个<code>头文件</code>（header）。通常情况下，一般将程序的所有
+#include指令放在源文件的开始位置。</p>
+<h4 id="向流写入数据">向流写入数据
+</h4><p>在上述示例中，main的函数体的第一条语句执行了一个<code>表达式</code>（expression）。在C++中，一个表达式产生一个计算结果
+，它由一个或多个运算对象和（通常是）一个运算符组成。这条语句中使用了<strong>输出运算符</strong>（&laquo;
+）在标准输出上打印信息。</p>
+<p>&laquo;运算符接受两个运算对象，左侧对象必须是一个ostream对象，右侧对象是打印的值。此运算符将给定的值写到给定的ostream对象中。
+输出运算符的计算结果就是其左侧运算对象。</p>
+<p>在第一条语句中第一个运算符的结果成为第二个运算符的左侧运算对象。这样，我们就可以将输出请求连接起来。</p>
+<p><code>&quot;Enter two numbers: </code>为一个<strong>字符串字面值常量</strong>（string literal），是用一对双引号包围的字符序列。</p>
+<p><code>endl</code>被称为<strong>操纵符</strong>（manipulator）的特殊值。写入endl的效果是结束当前行。并将设备关联的
+<em>缓冲区</em>（buffer）中的内容刷到设备中
+。缓冲刷新操作可以保证到目前为止程序中所产生的所有输出都真正的写入输出流中，而不是仅停留在内存中等待写入流。</p>
+<h4 id="使用标准库中的名字">使用标准库中的名字
+</h4><p>再看示例，前缀std::指出名字cout和endl是定义在名为<strong>std</strong>的<strong>命名空间</strong>（namespace）中的。</p>
+<p>命名空间可以帮助我们避免不经意的名字定义冲突，以及使用库中相同名字导致的冲突。标准库定义的所有名字都在
+命名空间std中。</p>
+<p>通过命名空间使用标准库有一个副作用：当使用标准库中的一个名字时，必须显式说明我们想要使用来自命名空间std中的名字。
+例如，需要写入std::cout，通过使用<strong>作用域运算符</strong>（::）来访问标准库中的名字cout。</p>
+<h4 id="从流读取数据">从流读取数据
+</h4><p>在代码块中语句<code>int value1=0, value2=0</code>。将int类型的变量<em>初始化</em>（initialize）为0。即初始化一个变量，就是在变量创建
+的同时为它赋予一个值。建议，每定义的变量都赋予初值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">value1</span><span class="o">&gt;&gt;</span><span class="n">value2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>它读入输入数据。<strong>输入运算符</strong>（&raquo;）与输出运算符类似。它接受一个istream作为其左侧运算对象，接受一个对象作为
+其右侧运算对象。它从给定的istream读入数据，并存入给定对象中。与输出运算符类似，输出运算符返回其左侧运算对象作为其计算结果。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">value1</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="n">value2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">value1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">value2</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述代码，其第一条语句执行结果等同于第二第三条执行结果。</p>
+<hr>
+<h2 id="13-注释简介">1.3 注释简介
+</h2><p><em>注释</em>（comments）。注释可以帮助人类读者理解程序。应该明白的是代码是给人类读的，只是恰好机器能够明白！</p>
+<p>注释通常用于概述算法（算法是一组完成任务的指令），确定变量的用途，或者解释晦涩难懂的代码段。</p>
+<p><strong>当修改代码时，不要忘记同时更新注释！</strong> 因为错误的注释往往比完全没有注释更糟糕！</p>
+<p>C++中注释有两种：</p>
+<ul>
+<li>单行注释，以“//”开头，换行符结束。</li>
+<li>多行注释，以界定符“/<em>”开头，“*/”结束。编译器会将“/</em>*/”中所有文本内容忽略掉。</li>
+</ul>
+<blockquote>
+<p>注释界定符可以跨越程序中的多行，但者并不是必须的。
+当注释界定符跨越多行时，最好能显式指出其内部的程序行都属于注释的一部分。</p>
+<p>采用的风格是，注释内的每一行都以一个星号开头，从而指出整个范围都是多行注释的一部分。</p></blockquote>
+<p>程序中通常同时包含两种形式的注释。注释界定符对通常用于多行注释，而双斜线注释常用于半行和单行附注。</p>
+<p><strong>注释界定符不能嵌套</strong>，加入我们需要在调试期间注释一些代码，最好的方式是用单行注释方式注释掉代码段的每一行。</p>
+<hr>
+<h2 id="14控制流">1.4控制流
+</h2><p>语句一般是顺序执行的，但程序设计语言提供了多种不同的控制流语句，允许我们写出更为复杂的执行路径。</p>
+<h3 id="141-while语句">1.4.1 while语句
+</h3><p><em>while</em>语句允许反复执行一段代码，直至给定条件为假为止。</p>
+<p>while语句的形式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">statement</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>while语句的执行过程是交替地检测condition条件和执行关联的语句statement，直至condition为假
+停止。所谓<em>条件</em>(condition)就是一个产生真或假的结果的表达式。</p>
+<h3 id="142-for语句">1.4.2 for语句
+</h3><p>每个<strong>for</strong>语句都包含两部分：循环头和循环体。循环头控制循环体的执行次数，它由三部分组成
+：一个初始化语句（init-statement）、一个循环条件（condition）以及一个表达式（expression）
+。</p>
+<h3 id="143-读取数量不定的输入数据">1.4.3 读取数量不定的输入数据
+</h3><p>如题：<br>
+编写程序，实线对用户输入的一组数求和。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* 读取数据直到遇到文件尾，计算所有读入的值的和 */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">value</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span><span class="o">+=</span><span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;Sum is: &#34;</span><span class="o">&lt;&lt;</span><span class="n">sum</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>while语句中的表达式表示从标准输入读取下一个数，并赋值（保存在）给value。输入运算符返回其左侧运算对象，即<code>std::cin</code>
+。因此，其循环条件其实检测的是<code>std::cin</code>。</p>
+<blockquote>
+<p>当我们使用一个istream对象作为条件时，其效果是检测流的状态。如果流是有效的，那么检测成功。就可以通过while检测。
+而当遇见遇见文件解释符（EOF end-of-while），流状态就变为无效。while判断便无法通过。</p></blockquote>
+<p>其实还可以写成这种情况,就可以使用回车结束当前循环：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">Exercise_1_4</span><span class="o">::</span><span class="n">OutputSum</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">()</span><span class="o">==</span><span class="sc">&#39;\n&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Sum is: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>PS:</p>
+<p>编译器其实无法检测代码是否符合开发者要求，编译器能做的是检测代码形式(form)或者说语法上的错误。</p>
+<p>常见的编译器错误：</p>
+<blockquote>
+<p>1、语法错误（syntax error）<br>
+2、类型错误（type error）<br>
+3、声明错误（declaration error）</p></blockquote>
+<p>明白了编译器提供的错误提示就应该<strong>马上修改</strong>，因为错误往往具有传递效应。同时还需要做到错误修改完成立刻重新
+编译。即“编辑-编译-调试”（edit-compile-debug）周期。</p></blockquote>
+<h3 id="144-if语句">1.4.4 if语句
+</h3><p>用于判断表达式的真假</p>
+<blockquote>
+<p>PS:</p>
+<p>C++程序的缩进和格式</p>
+<p>无论使用什么格式，当做出该代码格式时应该明白为什么要这样做？有什么影响？有什么好处？<br>
+如果明白其格式作用，那么就应该坚持下去，切不可三心二意。</p>
+<p>我的格式清单：</p>
+<p>1、代码长度不超过100个字符<br>
+2、左侧花括号应该与其代码处于同一行（借鉴java）<br>
+3、上下邻居的输出输出运算符应该排列整齐</p></blockquote>
+<hr>
+<h2 id="15-类简介">1.5 类简介
+</h2><p>一个<strong>类</strong>（class）定义了一个类型，以及与其关联的一组操作。</p>
+<p>类机制是C++最重要的特性之一。C++最初的设计焦点就是能定义使用上像内置类型一样自然的<strong>类类型</strong>（class type）</p>
+<blockquote>
+<p>使用类，需要明白三件事：</p>
+<p>类名是什么？<br>
+类在哪里定义？<br>
+类支持什么操作？</p></blockquote>
+<p>头文件根据其中定义的类的名字来命名。一般通常使用.h后缀名来作为头文件命名，当然也可以使用其他后缀名比如：.H、
+.hpp或hxx。标准库头文件通常不带后缀。编译器也不会关心文件名的形式。</p>
+<p>类作者决定了类类型对象上可以使用的所有操作。</p>
+<p>在引入头文件时，在源文件使用尖括号（&lt; &gt;）包围标准头文件，而不属于标准头文件，则用双引号（&quot; &ldquo;）包围。</p>
+<blockquote>
+<p>PS：</p>
+<p>文件重定向</p>
+<p>文件重定向一般有两种实现三种方式。</p>
+<p>第一种方式：代码内编写</p>
+<blockquote>
+<p>可以使用函数：<code>freopen()</code>和<code>rdbuf()</code>。</p></blockquote>
+<p>第二种方式：控制台实现
+例如存在<code>main.cpp</code>文件，首先运行文件生成可执行文件（如：<code>mian</code>）<br>
+通过使用“&lt;”和“&gt;”实现重定向，</p>
+<p><code>main &lt;in.txt &gt;out.txt</code></p></blockquote>
+<p><strong>成员函数</strong>（member function）是定义为类的一部分的函数，有时也被称为方法（method）。笔者更愿意称为方法，
+原因是类作为C++的高级特性，称呼为方法表明该函数存在于类中，与传统的函数做区分。</p>
+<p>通过使用<strong>点运算符</strong>（.）用来表示“名为xxx的对象的xxx成员”，例如常见的<code>cin.get()</code>。点运算符只能用于类类型的对象。
+其左侧运算对象必须是一个类类型的对象，右侧运算对象必须是该类类型的一个成员名，运算结果为右侧对象指定成员。</p>
+<p>当访问一个成员函数（方法）时，我们想要调用该方法，则需要使用<strong>调用运算符</strong>（()）。在其内放置实参（argument）列表。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%83%E7%AB%A0-%E7%B1%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第七章 类</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第三章 字符串、向量和数组</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第九章 顺序容器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第二章 变量和基本类型</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%AF%AD%E5%8F%A5/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第五章 语句</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Free-Aaron-Li/utterances"
+        issue-term="pathname"
+        
+        label="comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Aaron
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

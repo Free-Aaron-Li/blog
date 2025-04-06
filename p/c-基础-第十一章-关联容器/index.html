@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="第十一章 关联容器 前言 关联容器和顺序容器有着本质的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。\n">
+<title>C&#43;&#43; 基础： 第十一章 关联容器</title>
+
+<link rel='canonical' href='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="C++ 基础： 第十一章 关联容器">
+<meta property='og:description' content="第十一章 关联容器 前言 关联容器和顺序容器有着本质的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。\n">
+<meta property='og:url' content='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/'>
+<meta property='og:site_name' content='亚伦的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+<meta name="twitter:title" content="C++ 基础： 第十一章 关联容器">
+<meta name="twitter:description" content="第十一章 关联容器 前言 关联容器和顺序容器有着本质的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_d0557925549c907f.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😁</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">亚伦的博客</a></h1>
+            <h2 class="site-description">开发、学习及趣事</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/630183635'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928299453" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1861" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.25" height="256"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="1862"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="1863"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Free-Aaron-Li/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928354280" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2983" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M512 0C229.283787 0 0.142041 234.942803 0.142041 524.867683c0 231.829001 146.647305 428.553077 350.068189 497.952484 25.592898 4.819996 34.976961-11.38884 34.976961-25.294314 0-12.45521-0.469203-45.470049-0.725133-89.276559-142.381822 31.735193-172.453477-70.380469-172.453477-70.380469-23.246882-60.569859-56.816233-76.693384-56.816234-76.693385-46.493765-32.58829 3.540351-31.948468 3.540351-31.948467 51.356415 3.71097 78.356923 54.086324 78.356923 54.086324 45.683323 80.19108 119.817417 57.072162 148.993321 43.593236 4.649376-33.91059 17.915029-57.029508 32.50298-70.167195-113.675122-13.222997-233.151301-58.223843-233.1513-259.341366 0-57.285437 19.919806-104.163095 52.678715-140.846248-5.246544-13.265652-22.820334-66.626844 4.990615-138.884127 0 0 42.996069-14.076094 140.760939 53.787741 40.863327-11.644769 84.627183-17.445825 128.177764-17.6591 43.465272 0.213274 87.271782 6.014331 128.135109 17.6591 97.679561-67.906489 140.59032-53.787741 140.59032-53.787741 27.938914 72.257282 10.407779 125.618474 5.118579 138.884127 32.844219 36.683154 52.593405 83.560812 52.593405 140.846248 0 201.586726-119.646798 245.990404-233.663158 258.957473 18.341577 16.208835 34.721032 48.199958 34.721032 97.210357 0 70.167195-0.639822 126.7275-0.639823 143.960051 0 14.033439 9.213443 30.370239 35.190235 25.209005 203.250265-69.527373 349.769606-266.123484 349.769605-497.867175C1023.857959 234.942803 794.673558 0 512 0" fill="#3E75C3" p-id="2984"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/en/" >English</option>
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#111-使用关联容器">11.1 使用关联容器</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#使用map">使用map</a></li>
+            <li><a href="#使用set">使用set</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#112-关联容器概述">11.2 关联容器概述</a>
+      <ol>
+        <li><a href="#定义关联容器">定义关联容器</a>
+          <ol>
+            <li><a href="#初始化multimap或multiset">初始化multimap或multiset</a></li>
+          </ol>
+        </li>
+        <li><a href="#关键字类型的要求">关键字类型的要求</a>
+          <ol>
+            <li><a href="#有序容器的关键字类型">有序容器的关键字类型</a></li>
+          </ol>
+        </li>
+        <li><a href="#pair类型">pair类型</a></li>
+      </ol>
+    </li>
+    <li><a href="#113-关联容器操作">11.3 关联容器操作</a>
+      <ol>
+        <li><a href="#关联容器迭代器">关联容器迭代器</a></li>
+        <li><a href="#添加元素">添加元素</a>
+          <ol>
+            <li><a href="#向map添加元素">向map添加元素</a></li>
+            <li><a href="#检测insert的返回值">检测insert的返回值</a></li>
+          </ol>
+        </li>
+        <li><a href="#删除元素">删除元素</a></li>
+        <li><a href="#map的下标操作">map的下标操作</a></li>
+        <li><a href="#访问元素">访问元素</a>
+          <ol>
+            <li><a href="#对map使用find代替下标操作">对map使用find代替下标操作</a></li>
+            <li><a href="#在multimap或multiset中查找元素">在multimap或multiset中查找元素</a></li>
+          </ol>
+        </li>
+        <li><a href="#一个单词转换的map">一个单词转换的map</a></li>
+      </ol>
+    </li>
+    <li><a href="#114-无序容器">11.4 无序容器</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#无序容器对关键字类型的要求">无序容器对关键字类型的要求</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" alt="Featured image of post C&#43;&#43; 基础： 第十一章 关联容器" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >
+                C&#43;&#43; 学习笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E5%85%B3%E8%81%94%E5%AE%B9%E5%99%A8/">C&#43;&#43; 基础： 第十一章 关联容器</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 15 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="第十一章-关联容器">第十一章 关联容器
+</h1><h2 id="前言">前言
+</h2><p>关联容器和顺序容器有着本质的不同：关联容器中的元素是按关键字来保存和访问的。与之相对，顺序容器中的元素是按它们在容器中的位置来顺序保存和访问的。</p>
+<p>关联容器支持高效的关键字查找和访问。两个主要的<strong>关联容器</strong>（associative-container）类型是map和set。</p>
+<p>map中元素以[关键字-值]（key-vale）方式存在，关键字起到索引的作用，值则表示与索引相关联的数据。</p>
+<p>set中元素仅包含一个关键字，其支持高效的关键字查询操作。</p>
+<p>标准库提供8个关联容器：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">按关键字有序保存元素</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">map</td>
+          <td style="text-align: center">关联数组：保存<code>关键字-值</code>对</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">set</td>
+          <td style="text-align: center">关键字即值，即只保留关键字的容器</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">multimp</td>
+          <td style="text-align: center">关键字可重复出现的map</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">multiset</td>
+          <td style="text-align: center">关键字可重复出现的set</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">无序集合</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">unordered_map</td>
+          <td style="text-align: center">用哈希函数组织的map</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">unordered_set</td>
+          <td style="text-align: center">用哈希函数组织的set</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">unordered_multimap</td>
+          <td style="text-align: center">用哈希函数组织的map：关键字可以重复出现</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">unordered_multiset</td>
+          <td style="text-align: center">用哈希函数组织的set：关键字可以重复出现</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>以上的8个容器的不同体现在三个维度：</p>
+<ol>
+<li>每个容器要么是map,要么是set</li>
+<li>容器要求要么是不重复的关键字，要么允许重复关键字</li>
+<li>容器按照要么按照顺序存储，要么以无序存储</li>
+</ol>
+<blockquote>
+<p>map与multimap定义在<code>map</code>头文件中；set和multiset定义在<code>set</code>头文件中；无序容器定义在<code>unordered_map</code>和<code>unordered_set</code>中。</p></blockquote>
+<h2 id="111-使用关联容器">11.1 使用关联容器
+</h2><p>简单举例：</p>
+<p>map类型通常被称为<b>关联数组</b>（associative array）。与一般数组类似，只不过其下标为关键字。例如：给定一个名字到电话号码的map，我们可以使用一个人的名字作为下标来获取此人的电话号码。</p>
+<p>set本质就是关键字的<strong>简单集合</strong>。</p>
+<h4 id="使用map">使用map
+</h4><p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">word_count</span><span class="p">[</span><span class="n">word</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">w</span> <span class="p">:</span> <span class="n">word_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">w</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; occurs &#34;</span><span class="o">&lt;&lt;</span><span class="n">w</span><span class="p">.</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="p">((</span><span class="n">w</span><span class="p">.</span><span class="n">second</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s">&#34; times</span><span class="se">\n</span><span class="s">&#34;</span><span class="o">:</span><span class="s">&#34; time</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span> <span class="o">-</span><span class="n">g</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">main</span>
+</span></span><span class="line"><span class="cl"><span class="n">hello</span> <span class="n">world</span> <span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">is</span> <span class="n">good</span> <span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">is</span> <span class="n">bad</span> <span class="o">!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">!</span> <span class="n">occurs</span> <span class="mi">3</span> <span class="n">times</span>
+</span></span><span class="line"><span class="cl"><span class="n">bad</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">good</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">hello</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">is</span> <span class="n">occurs</span> <span class="mi">2</span> <span class="n">times</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">occurs</span> <span class="mi">2</span> <span class="n">times</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>在上述示例代码中，map保存的每个元素中，关键字类型为<code>std::string</code>，值类型为<code>std::size_t</code>。 该示例中，将一个string作为下标，与此string相关联的size_t类型作为计数器。</p>
+<p>当我们从map中<strong>提取</strong>一个元素时，会得到一个pair类型的对象。pair是一个模板类型，保存两个数据成员（first和second）。map所使用的pair用first成员保留关键字，second成员保存对应的值。</p>
+<h4 id="使用set">使用set
+</h4><p>对于上面的扩展：合理忽略一些常见单词，如“the”、“and”、“or”、“is”等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">{};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">exclude</span><span class="p">{</span>  <span class="s">&#34;The&#34;</span><span class="p">,</span><span class="s">&#34;But&#34;</span><span class="p">,</span><span class="s">&#34;And&#34;</span><span class="p">,</span><span class="s">&#34;Or&#34;</span><span class="p">,</span><span class="s">&#34;An&#34;</span><span class="p">,</span><span class="s">&#34;A&#34;</span><span class="p">,</span><span class="s">&#34;Is&#34;</span><span class="p">,</span><span class="s">&#34;!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="s">&#34;the&#34;</span><span class="p">,</span><span class="s">&#34;but&#34;</span><span class="p">,</span><span class="s">&#34;and&#34;</span><span class="p">,</span><span class="s">&#34;or&#34;</span><span class="p">,</span><span class="s">&#34;an&#34;</span><span class="p">,</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;is&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">exclude</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">==</span> <span class="n">exclude</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">word_count</span><span class="p">[</span><span class="n">word</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">w</span> <span class="p">:</span> <span class="n">word_count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">w</span><span class="p">.</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; occurs &#34;</span><span class="o">&lt;&lt;</span><span class="n">w</span><span class="p">.</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="p">((</span><span class="n">w</span><span class="p">.</span><span class="n">second</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">?</span><span class="s">&#34; times</span><span class="se">\n</span><span class="s">&#34;</span><span class="o">:</span><span class="s">&#34; time</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span> <span class="o">-</span><span class="n">g</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">main</span>
+</span></span><span class="line"><span class="cl"><span class="n">hello</span> <span class="n">world</span> <span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">is</span> <span class="n">bad</span> <span class="o">!</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">is</span> <span class="n">good</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bad</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">good</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="n">hello</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span><span class="line"><span class="cl"><span class="k">this</span> <span class="n">occurs</span> <span class="mi">2</span> <span class="n">times</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span> <span class="n">occurs</span> <span class="mi">1</span> <span class="n">time</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>调用find函数会返回一个迭代器，如果找到word迭代器指向该关键字，否则返回一个尾后迭代器。</p>
+<h2 id="112-关联容器概述">11.2 关联容器概述
+</h2><p>常规的<a class="link" href="https://www.cnblogs.com/aaroncoding/p/17596720.html"  target="_blank" rel="noopener"
+    >容器操作</a> 关联容器能够支持，但是，对于顺序容器位置相关的操作（如：push_front、push_back）、插入操作等不支持。</p>
+<p>关联容器的迭代器都是双向的。</p>
+<h3 id="定义关联容器">定义关联容器
+</h3><p>每个关联容器都定义了一个默认构造函数，它创建一个指定类型的空容器。</p>
+<p>初始化关联容器必须能够将初始化器转换为容器中元素的类型。特别的：初始化map,必须提供关键字类型和值类型，且将每个关键字——值对包围在花括号中。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 空容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 列表初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">filter</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#34;The&#34;</span><span class="p">,</span><span class="s">&#34;But&#34;</span><span class="p">,</span><span class="s">&#34;And&#34;</span><span class="p">,</span><span class="s">&#34;Or&#34;</span><span class="p">,</span><span class="s">&#34;An&#34;</span><span class="p">,</span><span class="s">&#34;A&#34;</span><span class="p">,</span><span class="s">&#34;Is&#34;</span><span class="p">,</span><span class="s">&#34;!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                 <span class="s">&#34;the&#34;</span><span class="p">,</span><span class="s">&#34;but&#34;</span><span class="p">,</span><span class="s">&#34;and&#34;</span><span class="p">,</span><span class="s">&#34;or&#34;</span><span class="p">,</span><span class="s">&#34;an&#34;</span><span class="p">,</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;is&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// map初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">authors</span> <span class="o">=</span> <span class="p">{</span>   <span class="p">{</span><span class="s">&#34;Joyce&#34;</span><span class="p">,</span><span class="s">&#34;James&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">												<span class="p">{</span><span class="s">&#34;Austen&#34;</span><span class="p">,</span><span class="s">&#34;Jane&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">												<span class="p">{</span><span class="s">&#34;Dickens&#34;</span><span class="p">,</span><span class="s">&#34;Charles&#34;</span><span class="p">}};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="初始化multimap或multiset">初始化multimap或multiset
+</h4><p>对于map和set来说，对于一个给定的关键字，只能有一个元素的关键字等于它。但是，对于multimap和multiset则没有此限制。例如：在统计单词数量时，每个单词最多拥有一个元素。但在词典中，特定单词可能含有多重释义。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">i_vec</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">size_type</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">i</span><span class="o">!=</span><span class="mi">10</span><span class="p">;</span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i_vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i_vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">i_set</span><span class="p">(</span><span class="n">i_vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="n">i_vec</span><span class="p">.</span><span class="n">cend</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">multiset</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">i_mset</span><span class="p">(</span><span class="n">i_vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="n">i_vec</span><span class="p">.</span><span class="n">cend</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;vector size: &#34;</span><span class="o">&lt;&lt;</span><span class="n">i_vec</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="s">&#34; set size: &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;&lt;</span><span class="n">i_set</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="s">&#34; multiset size: &#34;</span><span class="o">&lt;&lt;</span><span class="n">i_mset</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="o">-</span><span class="n">o</span> <span class="n">main</span> <span class="o">-</span><span class="n">g</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">main</span>
+</span></span><span class="line"><span class="cl"><span class="n">vector</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">20</span> <span class="n">set</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">10</span> <span class="n">multiset</span> <span class="nl">size</span><span class="p">:</span> <span class="mi">20</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>在上述示例中，multiset允许重复关键字。</p>
+<h3 id="关键字类型的要求">关键字类型的要求
+</h3><p>关联容器对关键字类型有一些限制。对于有序容器（这里及以下均指代关联有序容器）来说关键字类型必须定义元素比较的方法，默认情况下，标准库使用关键字类型的&lt;运算符来比较两个关键字。</p>
+<h4 id="有序容器的关键字类型">有序容器的关键字类型
+</h4><p>与算法类似，有序容器也可以通过自定义操作替代关键字的&lt;运算符。但是必须遵循**严格弱序
+**（strict weak ordering）。可以将严格弱序看作“小于等于”，其必须具备如下性质：</p>
+<ul>
+<li>两个关键字不能同时“小于等于”对方；如果k1“小于等于”k2,那么k2绝不能“小于等于”k1。</li>
+<li>如果k1“小于等于”k2,且k2“小于等于”k3,那么k1必须“小于等于”k3。</li>
+<li>如果存在两个关键字，任何一个都不“小于等于”另一个，那么我们称这两个关键字是“等价”的。如果k1“等价于”k2,且k2“等价于”k3,那么k1必须“等价于”k3。</li>
+</ul>
+<p>如果两个关键字是等价的，那么容器将它们视为相等来处理。</p>
+<blockquote>
+<p>在实际编程中，重要的是，如果一个类型定义了“行为正常”的&lt;运算符，则它可以用作关键字类型。</p></blockquote>
+<p><strong>如果选择自定义操作，则必须在定义关联容器类型时提供此操作的类型</strong>，自定义操作类型必须在尖括号中紧跟着元素类型。</p>
+<h3 id="pair类型">pair类型
+</h3><p>pair：标准库类型，定义在<code>utility</code>头文件中</p>
+<p>一个pair保存两个数据成员，类似容器。pair作为一个模板用来生成特定类型。创建一个pair,必须提供两个类型名（不要求一致），pair的数据成员将具有对应的类型。</p>
+<p>pair的默认构造函数对数据成员进行值初始化，当然可以手动提供初始化器。
+示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">{</span><span class="s">&#34;hello&#34;</span><span class="p">,</span><span class="s">&#34;world&#34;</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>pair的数据成员为public,其成员分别命名为first和second。</p>
+<p>详细操作：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">pair上的操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">pair&lt;T1,T2&gt; p;</td>
+          <td style="text-align: center">p是一个pair,两个类型分别为T1和T2的成员都进行了值初始化</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pair&lt;T1,T2&gt; p(v1,v2)</td>
+          <td style="text-align: center">p是一个成员类型为T1和T2的pair；first和second成员分别用v1和v2进行初始化</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">pair&lt;T1,T2&gt; p={v1,v2};</td>
+          <td style="text-align: center">等价于p(v1,v2)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">make_pair(v1,v2)</td>
+          <td style="text-align: center">返回一个用v1和v2初始化的pair。pair的类型从v1和v2的类型推断出来</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">p.first</td>
+          <td style="text-align: center">返回p的名为first的（公有）数据成员</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">p.second</td>
+          <td style="text-align: center">返回p的名为second的（公有）数据成员</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">p1==p2<br/>p1!=p2</td>
+          <td style="text-align: center">当first和second成员分别相等时，两个pair相等。相等性判断利用元素的==运算符实现</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="113-关联容器操作">11.3 关联容器操作
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">关联容器额外的类型别名</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">key_type</td>
+          <td style="text-align: center">此容器类型的关键字类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">mapped_type</td>
+          <td style="text-align: center">每个关键字关联的类型；只适用于map</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">value_type</td>
+          <td style="text-align: center">对于set,与key_type相同<br/>对于map,为pair&lt;const key_type,mapped_type&gt;</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>需要注意到：对于value_type,我们不能改变一个元素的关键字，所以这些pair的关键字部分是const的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">key_type</span> <span class="n">v1</span><span class="p">;</span> <span class="c1">// string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">value_type</span> <span class="n">v2</span><span class="p">;</span> <span class="c1">// string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">key_type</span> <span class="n">v3</span><span class="p">;</span> <span class="c1">// string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">mapped_type</span> <span class="n">v4</span><span class="p">;</span> <span class="c1">// int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">value_type</span> <span class="n">v5</span><span class="p">;</span> <span class="c1">// pair&lt;const string,int&gt;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="关联容器迭代器">关联容器迭代器
+</h3><p>对于解引用一个关联迭代器时，我们会得到一个类型为容器的value_type的值的引用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">map_iter</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="c1">// 指向pair&lt;const string,size_t&gt;对象的引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span> <span class="c1">// string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span> <span class="c1">// size_t
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="o">=</span><span class="s">&#34;new key&#34;</span><span class="p">;</span> <span class="c1">// error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">++</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>虽然set类型同时定义了iterator和const_iterator类型，但是两种类型都只允许只读访问set中的元素。一个set中的关键字也是const。</p>
+<p>在进行常规编历时，使用迭代器进行遍历一个map、multimap、set和multiset时，迭代器按照<strong>关键字升序</strong>遍历元素。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iterator&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">{{</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="mi">2</span><span class="p">},{</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="mi">3</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">map_iter</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">map_iter</span><span class="o">!=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cend</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">map_iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="n">out</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>通常来说，不会对关联容器使用泛型算法。在实际编程中，如果我们真要对一个关联容器使用算法，要么是将它当作一个<b>源序列</b>，要么当作一个<b>目的位置</b>。例如：使用泛型copy算符拷贝一个关联容器到另一个序列，或是使用inserter将一个插入器绑定到一个关联容器，依次将关联容器当作一个目的位置来调用另一个算法。</p>
+<h3 id="添加元素">添加元素
+</h3><p>关联容器中insert成员会向容器中添加一个元素或一个元素范围。insert有两个版本，「1」接受一对迭代器，「2」接受一个初始化列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">set_1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(),</span><span class="n">vec</span><span class="p">.</span><span class="n">cend</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">set_2</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于map、set及其对应的无序列表来说，对于一个给定的关键字，只有<b>第一个</b>带此关键字的元素才能被插入到容器中。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iterator&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">{{</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="mi">2</span><span class="p">},{</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="mi">3</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">word_count</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">4</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">map_iter</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">map_iter</span><span class="o">!=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cend</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">map_iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="n">out</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="mi">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="向map添加元素">向map添加元素
+</h4><p>向map插入元素，注意元素类型为pair。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">map_1</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="n">map_2</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">map_3</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">map_4</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">value_type</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">关联容器insert操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c.insert(v)</td>
+          <td style="text-align: center">v是value_type类型的对象；args用来构造一个元素</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.emplace(args)</td>
+          <td style="text-align: center">对于map和set,只有当元素的关键字不在c中时才插入（或构造）元素。函数返回一个pair,包含一个迭代器，指向具有指定关键字的元素，以及一个指示插入是否成功的bool值。<br/>对于multimap和multiset，总会插入（或构造）给定元素，并返回一个指向新元素的迭代器</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.insert(b,e)<br/>c.insert(il)</td>
+          <td style="text-align: center">b和e是迭代器，表示一个c::value_type类型值的范围；il是这种值的花括号列表。函数返回void<br/>对于map和set,只插入关键字不在c中的元素。对于multimap和multiset,则会插入范围中的每个元素</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.insert(p,v) <br/>c.emplace(p,args)</td>
+          <td style="text-align: center">类似于insert(v)（或emplace(args)），但将迭代器p作为一个指示，指出从哪里开始搜索新元素应该存储的位置。返回一个迭代器，指向具有给定关键字的元素</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="检测insert的返回值">检测insert的返回值
+</h4><p>insert（或emplace）返回的值依赖于容器类型和参数。</p>
+<p>对于不包含重复关键词的容器，添加单一元素返回pair,pair的first成员为迭代器，指向具有给定关键词的元素；second成员是一个bool值，指出元素是否插入成功。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iterator&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">{{</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="mi">2</span><span class="p">},{</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="mi">3</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">result_1</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">4</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">result_2</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">&#34;d&#34;</span><span class="p">,</span><span class="mi">4</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">map_iter</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cbegin</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">map_iter</span><span class="o">!=</span><span class="n">word_count</span><span class="p">.</span><span class="n">cend</span><span class="p">()){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">first</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">map_iter</span><span class="o">-&gt;</span><span class="n">second</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">map_iter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;result_1 is: &#34;</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">result_1</span><span class="p">.</span><span class="n">second</span><span class="o">?</span><span class="s">&#34;true&#34;</span><span class="o">:</span><span class="s">&#34;false&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">             <span class="o">&lt;&lt;</span><span class="s">&#34;,result_2 is: &#34;</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">result_2</span><span class="p">.</span><span class="n">second</span><span class="o">?</span><span class="s">&#34;true&#34;</span><span class="o">:</span><span class="s">&#34;false&#34;</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="n">out</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"><span class="n">result_1</span> <span class="nl">is</span><span class="p">:</span> <span class="nb">false</span><span class="p">,</span><span class="n">result_2</span> <span class="nl">is</span><span class="p">:</span> <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="删除元素">删除元素
+</h3><p>关联容器定义了三个版本的erase。</p>
+<p>前两个版本与顺序容器的操作非常类似：都是通过一个迭代器或一个迭代器对进行删除一个元素或一个元素范围，函数返回迭代器。关联容器提供了一个额外的erase操作，其接受key_type参数。此版本删除匹配给定关键词的元素，返回实际删除的<b>元素数量</b>。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">从关联容器删除元素</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c.erase(k)</td>
+          <td style="text-align: center">从c中删除每个关键字为k的元素。返回一个size_type值，指出删除的元素的数量</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.erase(p)</td>
+          <td style="text-align: center">从c中删除迭代器p指定的元素。p必须指向c中一个真实元素，不能等于c.end()。返回一个指向p之后元素的迭代器，若p指向c中的尾元素，则返回c.end()</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.erase(b,e)</td>
+          <td style="text-align: center">删除迭代器对b和e所表示的范围中的元素。返回e</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">multimap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">{{</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">&#34;b&#34;</span><span class="p">,</span><span class="mi">2</span><span class="p">},{</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="mi">3</span><span class="p">},{</span><span class="s">&#34;c&#34;</span><span class="p">,</span><span class="mi">4</span><span class="p">}};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">removeal_word</span><span class="o">=</span><span class="s">&#34;c&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">auto</span> <span class="n">removeal_num</span><span class="o">=</span><span class="n">word_count</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">removeal_word</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">removeal_num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;ok: &#34;</span><span class="o">&lt;&lt;</span><span class="n">removeal_word</span><span class="o">&lt;&lt;</span><span class="s">&#34; removed,removeal num is &#34;</span><span class="o">&lt;&lt;</span><span class="n">removeal_num</span><span class="o">&lt;&lt;</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;oops: &#34;</span><span class="o">&lt;&lt;</span><span class="n">removeal_word</span><span class="o">&lt;&lt;</span><span class="s">&#34;no found!</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>RUN</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="err">$</span> <span class="n">g</span><span class="o">++</span> <span class="n">main</span><span class="p">.</span><span class="n">cpp</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="p">.</span><span class="o">/</span><span class="n">a</span><span class="p">.</span><span class="n">out</span>
+</span></span><span class="line"><span class="cl"><span class="nl">ok</span><span class="p">:</span> <span class="n">c</span> <span class="n">removed</span><span class="p">,</span><span class="n">removeal</span> <span class="n">num</span> <span class="n">is</span> <span class="mi">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="map的下标操作">map的下标操作
+</h3><p>map和unordered_map容器提供下标运算符和对应的at函数。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">map和unordered_map的下标操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c[k]</td>
+          <td style="text-align: center">返回关键字为k的元素；如果k不在c中，<strong>添加</strong>一个关键字为k的元素，对其进行值初始化</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.at(k)</td>
+          <td style="text-align: center">访问关键字为k的元素，带参数检查；若k不再c中，抛出一个out_of_range异常</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>需要注意到的是，如果关键字不再map中会创建一个元素并插入到map中，关联值将进行值初始化。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="n">size_t</span><span class="o">&gt;</span> <span class="n">word_count</span><span class="p">;</span> <span class="c1">// 空容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">word_count</span><span class="p">[</span><span class="s">&#34;a&#34;</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// 创建元素，关键字为a,值为1
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>详细流程：</p>
+<ol>
+<li>在word_count中搜索关键字为a的元素，未找到。</li>
+<li>将一个新的关键字-值对插入到word_count中。关键字是一个const string，保存a。值进行值初始化，上述例子中为0</li>
+<li>提取出新插入的元素，并将1赋予它。</li>
+</ol>
+<p>注意：由于下标运算符可能插入一个新元素，所以仅可以对非const的map使用下标操作。</p></blockquote>
+<p>通常情况，解引用一个迭代器所返回的类型与下标运算符返回的类型一样。但对map不然：<b>当对一个map进行下标操作时，会获得一个mapped_type对象；但当解引用一个map迭代器时，会得到一个value_type对象</b>。</p>
+<h3 id="访问元素">访问元素
+</h3><p>关联容器提供多钟查找一个指定元素的方法。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">在一个关联容器中查找元素的操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c.find(k)</td>
+          <td style="text-align: center">返回一个迭代器，指向第一个关键字为k的元素，若k不再容器中，则返回为后迭代器</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.count(k)</td>
+          <td style="text-align: center">返回关键字等于k的元素的数量。对于不允许重复关键字的容器，返回值永远是0或1</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.lower_bound(k)</td>
+          <td style="text-align: center">返回一个迭代器，指向第一个关键字不小于k的元素</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.upper_bound(k)</td>
+          <td style="text-align: center">返回一个迭代器，指向第一个关键字大于k的元素</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.equal_range(k)</td>
+          <td style="text-align: center">返回一个迭代器pair,表示关键字等于k的元素的范围。若k不存在，pair的两个成员均等于c.end()（准确来说：指向关键字可以插入的位置）</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>注意：lower_bound和upper_bound不适用于无序容器。下标和at操作只适用于非const的map和unordered_map。</p></blockquote>
+<p>这么多查找方式，应该根据解决问题思考。如果我们关心只不过是一个特定元素是否已在容器中，可能find是最佳选择。对于count和find,如果不需要计数，最好使用find。</p>
+<h4 id="对map使用find代替下标操作">对map使用find代替下标操作
+</h4><p>由于下标操作的严重副作用，除非使用下标符合你的预期，最好使用find查找map中的元素。</p>
+<h4 id="在multimap或multiset中查找元素">在multimap或multiset中查找元素
+</h4><p>如果一个multimap或multiset中有多个元素具有给定关键字，而这些元素在容器中会<b>相邻存储</b>。</p>
+<p>lower_bound返回的迭代器指向第一个具有给定关键词的元素，upper_bound返回的迭代器指向最后一个匹配给定关键词的元素。</p>
+<p>如果关键字不再multimap中，则lower_bound和upper_bound会返回相等的迭代器——指向一个不影响排序的关键字插入位置。这两个操作返回的迭代器可能是容器的尾后迭代器。如果关键字不存在且大于容器中任何关键字，则lower_bound返回尾后迭代器；如果查找的元素最大，upper_bound返回的也是尾后迭代器。</p>
+<blockquote>
+<p>注意：<b>lower_bound和upper_bound都不会报告关键字是否存在</b>。如果不存在,lower_bound将会指向第一个关键字大于给定关键字的元素，有可能是尾后迭代器；upper_bound指向最后一个匹配给定关键字的元素之后的元素，有可能是尾后迭代器。</p>
+<p>如果lower_bound和upper_bound返回相同的迭代器，则给定关键字不存在容器中。</p></blockquote>
+<h3 id="一个单词转换的map">一个单词转换的map
+</h3><p>查看：<a class="link" href="https://github.com/Free-Aaron-Li/Cpp_Study-program/blob/master/Cpp_Primer_Studying/PartII_STL/ChapterEleven_AssociativeContainer/src/exercise/11_3.cpp#L175"  target="_blank" rel="noopener"
+    >test</a></p>
+<h2 id="114-无序容器">11.4 无序容器
+</h2><p>C++11中定义了4个<b>无序关联容器</b>（unordered associative container)。这些容器不是使用比较运算符来组织元素，而是使用一个<b>哈希函数</b>（hash function）和关键字类型的==运算符。在关键字类型的元素没有<b>明显</b>的序关系的情况下，无序容器是非常有用的。在某些应用中，维护元素的序代价非常高昂，此时无序容器也很有用。</p>
+<p>虽然理论上哈希技术能获得更好的平均性能，但在实际中想要达到很好的效果还需要进行一些性能测试和调优工作。因此，使用无序容器通常更为简单（通常也会有更好的性能）。</p>
+<blockquote>
+<p>如果关键字类型固有就是无序的，或者性能测试发现问题可以用哈希技术解决，就可以使用无序容器。</p></blockquote>
+<p>无序容器在存储上组织为一组桶，每个桶保存零个或多个元素。无序容器使用一个哈希函数将元素映射到桶。为了访问一个元素，容器首先计算元素的哈希值，它指出应该搜索哪个桶。容器将具有一个特定哈希值的所有元素都保存在相同的桶中。因此，无序容器的性能依赖于哈希函数的质量和桶的数量和大小。</p>
+<p>对于相同的参数，哈希函数必须总是产生相同的结果。理想情况下，哈希函数还能将每个特定的值映射到唯一的桶。但是，将不同关键字的元素映射到相同的桶也是允许的。当一个桶保存多个元素时，需要顺序搜索这些元素来查找我们想要的那个。计算一个元素的哈希值和在桶中搜索通常都是很快的操作。但是，如果一个桶中保存了很多元素，那么查找一个特定元素就需要大量比较操作。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">无序容器管理操作——桶接口</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c.bucket_count()</td>
+          <td style="text-align: center">正在使用的桶的数目</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.max_bucket_count()</td>
+          <td style="text-align: center">容器能容纳的最多的桶的数量</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.bucket_size()</td>
+          <td style="text-align: center">第n个桶中有多少个元素</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.bucket(k)</td>
+          <td style="text-align: center">关键字为k的元素在哪个桶中</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">无序容器管理操作——桶迭代</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">local_iterator</td>
+          <td style="text-align: center">可以用来访问桶中元素的迭代器类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">const_local_iterator</td>
+          <td style="text-align: center">桶迭代器的const版本</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.begin(n),c.end(n)</td>
+          <td style="text-align: center">桶n的首元素迭代器和尾后迭代器</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.cbegin(n),c.cend(n)</td>
+          <td style="text-align: center">与前两个函数类似，但返回const_local_iterator</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">无序容器管理操作——哈希策略</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">c.local_factor()</td>
+          <td style="text-align: center">每个桶的平均元素数量，返回float值</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.max_local_factor()</td>
+          <td style="text-align: center">c试图维护的平均桶大小，返回float值。c会在需要时添加新的桶，以使得local_factor&lt;=max_local_factor</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.rehash(n)</td>
+          <td style="text-align: center">重组存储，使得bucket_count&gt;=n且bucket_count&gt;size/max_load_factor</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">c.reserve(n)</td>
+          <td style="text-align: center">重组存储，使得c可以保存n个元素且不必rehash</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="无序容器对关键字类型的要求">无序容器对关键字类型的要求
+</h4><p>默认情况下，无序容器使用关键字类型的==运算符来比较元素，它们还使用一个<code>hash&lt;key_type&gt;</code>类型的对象来生成每个元素的哈希值。标准库为内置类型（包括指针）、string、智能指针类型提供了hash模板。所以对上述类型可以定义对应的无序容器。</p>
+<p>对于自定义的类类型必须定义自己的hash模板才能使用无序容器。</p>
+<h2 id="总结">总结
+</h2><p>关联容器支持通过<b>关键字</b>进行高效<b>查找</b>和<b>提取</b>元素。对于关键字的使用将关联容器和顺序容器区分开来。</p>
+<p>标准库定义了8个关联容器，每个容器</p>
+<ul>
+<li>是一个map或者是一个set。map保存关键字-值对；set仅保存关键字</li>
+<li>要求关键字唯一或不要求。</li>
+<li>保持关键字有序或不保证有序。</li>
+</ul>
+<p>有序容器使用比较函数来比较关键字，从而将元素按顺序存储。默认情况下，比较操作采用关键字类型的&lt;运算符；无序容器使用关键字类型的==运算符和一个hash&lt;key_type&gt;类型的对象来组织元素。</p>
+<p>有序容器的迭代器通过关键字有序访问容器中的元素。无论在有序容器还是在无序容器中，具有相同关键字的元素都是相邻存储的。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第一章 开始</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%83%E7%AB%A0-%E7%B1%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第七章 类</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第三章 字符串、向量和数组</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第九章 顺序容器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第二章 变量和基本类型</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Free-Aaron-Li/utterances"
+        issue-term="pathname"
+        
+        label="comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Aaron
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

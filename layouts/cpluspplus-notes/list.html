@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  <div class="chapter-list">
+    {{ range .Pages }}
+      <div class="chapter-card">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p>{{ .Description }}</p>
+      </div>
+    {{ end }}
+  </div>
+{{ end }}

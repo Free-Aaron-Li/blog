@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="第八章 IO流 前言 C++语言并不会直接处理输入输出，而是通过一族定义在标准库中的类型来处理IO。这些类型支持从设备中读取数据、向设备写入数据IO操作。设备可以是文件、控制台窗口等，还有一些类型允许访问内存IO。\n">
+<title>C&#43;&#43; 基础： 第八章 IO流</title>
+
+<link rel='canonical' href='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%85%AB%E7%AB%A0-io%E6%B5%81/'>
+
+<link rel="stylesheet" href="/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css"><meta property='og:title' content="C++ 基础： 第八章 IO流">
+<meta property='og:description' content="第八章 IO流 前言 C++语言并不会直接处理输入输出，而是通过一族定义在标准库中的类型来处理IO。这些类型支持从设备中读取数据、向设备写入数据IO操作。设备可以是文件、控制台窗口等，还有一些类型允许访问内存IO。\n">
+<meta property='og:url' content='https://Free-Aaron-Li.github.io/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%85%AB%E7%AB%A0-io%E6%B5%81/'>
+<meta property='og:site_name' content='亚伦的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+<meta name="twitter:title" content="C++ 基础： 第八章 IO流">
+<meta name="twitter:description" content="第八章 IO流 前言 C++语言并不会直接处理输入输出，而是通过一族定义在标准库中的类型来处理IO。这些类型支持从设备中读取数据、向设备写入数据IO操作。设备可以是文件、控制台窗口等，还有一些类型允许访问内存IO。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg' />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_d0557925549c907f.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😁</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">亚伦的博客</a></h1>
+            <h2 class="site-description">开发、学习及趣事</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/630183635'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928299453" class="icon" viewBox="0 0 1129 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1861" xmlns:xlink="http://www.w3.org/1999/xlink" width="282.25" height="256"><path d="M234.909 9.656a80.468 80.468 0 0 1 68.398 0 167.374 167.374 0 0 1 41.843 30.578l160.937 140.82h115.07l160.936-140.82a168.983 168.983 0 0 1 41.843-30.578A80.468 80.468 0 0 1 930.96 76.445a80.468 80.468 0 0 1-17.703 53.914 449.818 449.818 0 0 1-35.406 32.187 232.553 232.553 0 0 1-22.531 18.508h100.585a170.593 170.593 0 0 1 118.289 53.109 171.397 171.397 0 0 1 53.914 118.288v462.693a325.897 325.897 0 0 1-4.024 70.007 178.64 178.64 0 0 1-80.468 112.656 173.007 173.007 0 0 1-92.539 25.75h-738.7a341.186 341.186 0 0 1-72.421-4.024A177.835 177.835 0 0 1 28.91 939.065a172.202 172.202 0 0 1-27.36-92.539V388.662a360.498 360.498 0 0 1 0-66.789A177.03 177.03 0 0 1 162.487 178.64h105.414c-16.899-12.07-31.383-26.555-46.672-39.43a80.468 80.468 0 0 1-25.75-65.984 80.468 80.468 0 0 1 39.43-63.57M216.4 321.873a80.468 80.468 0 0 0-63.57 57.937 108.632 108.632 0 0 0 0 30.578v380.615a80.468 80.468 0 0 0 55.523 80.469 106.218 106.218 0 0 0 34.601 5.632h654.208a80.468 80.468 0 0 0 76.444-47.476 112.656 112.656 0 0 0 8.047-53.109v-354.06a135.187 135.187 0 0 0 0-38.625 80.468 80.468 0 0 0-52.304-54.719 129.554 129.554 0 0 0-49.89-7.242H254.22a268.764 268.764 0 0 0-37.82 0z m0 0" fill="#20B0E3" p-id="1862"></path><path d="M348.369 447.404a80.468 80.468 0 0 1 55.523 18.507 80.468 80.468 0 0 1 28.164 59.547v80.468a80.468 80.468 0 0 1-16.094 51.5 80.468 80.468 0 0 1-131.968-9.656 104.609 104.609 0 0 1-10.46-54.719v-80.468a80.468 80.468 0 0 1 70.007-67.593z m416.02 0a80.468 80.468 0 0 1 86.102 75.64v80.468a94.148 94.148 0 0 1-12.07 53.11 80.468 80.468 0 0 1-132.773 0 95.757 95.757 0 0 1-12.875-57.133V519.02a80.468 80.468 0 0 1 70.007-70.812z m0 0" fill="#20B0E3" p-id="1863"></path></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Free-Aaron-Li/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1743928354280" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2983" xmlns:xlink="http://www.w3.org/1999/xlink" width="256" height="256"><path d="M512 0C229.283787 0 0.142041 234.942803 0.142041 524.867683c0 231.829001 146.647305 428.553077 350.068189 497.952484 25.592898 4.819996 34.976961-11.38884 34.976961-25.294314 0-12.45521-0.469203-45.470049-0.725133-89.276559-142.381822 31.735193-172.453477-70.380469-172.453477-70.380469-23.246882-60.569859-56.816233-76.693384-56.816234-76.693385-46.493765-32.58829 3.540351-31.948468 3.540351-31.948467 51.356415 3.71097 78.356923 54.086324 78.356923 54.086324 45.683323 80.19108 119.817417 57.072162 148.993321 43.593236 4.649376-33.91059 17.915029-57.029508 32.50298-70.167195-113.675122-13.222997-233.151301-58.223843-233.1513-259.341366 0-57.285437 19.919806-104.163095 52.678715-140.846248-5.246544-13.265652-22.820334-66.626844 4.990615-138.884127 0 0 42.996069-14.076094 140.760939 53.787741 40.863327-11.644769 84.627183-17.445825 128.177764-17.6591 43.465272 0.213274 87.271782 6.014331 128.135109 17.6591 97.679561-67.906489 140.59032-53.787741 140.59032-53.787741 27.938914 72.257282 10.407779 125.618474 5.118579 138.884127 32.844219 36.683154 52.593405 83.560812 52.593405 140.846248 0 201.586726-119.646798 245.990404-233.663158 258.957473 18.341577 16.208835 34.721032 48.199958 34.721032 97.210357 0 70.167195-0.639822 126.7275-0.639823 143.960051 0 14.033439 9.213443 30.370239 35.190235 25.209005 203.250265-69.527373 349.769606-266.123484 349.769605-497.867175C1023.857959 234.942803 794.673558 0 512 0" fill="#3E75C3" p-id="2984"></path></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/en/" >English</option>
+                                
+                                    <option value="https://Free-Aaron-Li.github.io/" selected>中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#81-io类">8.1 IO类</a>
+      <ol>
+        <li><a href="#io对象无拷贝或赋值">IO对象无拷贝或赋值</a></li>
+        <li><a href="#状态条件">状态条件</a>
+          <ol>
+            <li><a href="#管理条件状态">管理条件状态</a></li>
+          </ol>
+        </li>
+        <li><a href="#管理输出缓冲">管理输出缓冲</a>
+          <ol>
+            <li><a href="#刷新输出缓冲区">刷新输出缓冲区</a></li>
+            <li><a href="#关联输入和输出流">关联输入和输出流</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#82-文件输入输出">8.2 文件输入输出</a>
+      <ol>
+        <li><a href="#使用文件流对象">使用文件流对象</a>
+          <ol>
+            <li><a href="#用fstream代替iostream">用fstream代替iostream&amp;</a></li>
+            <li><a href="#成员函数open和close">成员函数open和close</a></li>
+          </ol>
+        </li>
+        <li><a href="#文件模式">文件模式</a></li>
+      </ol>
+    </li>
+    <li><a href="#83-string流">8.3 string流</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%85%AB%E7%AB%A0-io%E6%B5%81/">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" alt="Featured image of post C&#43;&#43; 基础： 第八章 IO流" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/c&#43;&#43;-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >
+                C&#43;&#43; 学习笔记
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E5%85%AB%E7%AB%A0-io%E6%B5%81/">C&#43;&#43; 基础： 第八章 IO流</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 06, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 12 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="第八章-io流">第八章 IO流
+</h1><h2 id="前言">前言
+</h2><p>C++语言并不会直接处理输入输出，而是通过一族定义在标准库中的类型来处理IO。这些类型支持从设备中读取数据、向设备写入数据IO操作。设备可以是文件、控制台窗口等，还有一些类型允许访问内存IO。</p>
+<p>IO库定义了读写内置类型值的操作。</p>
+<hr>
+<h2 id="81-io类">8.1 IO类
+</h2><p>在之前我们使用的IO类型和对象都是操作char数据且这些对象都是关联到用户的控制台窗口。但在实际开发中还不够，所以在C++的IO操作中还包括以下类型供开发者使用。</p>
+<p>在头文件iostream定义了读写流的基本类型、fstream定义了读写命名文件的类型、sstream定义了读写内存string对象的类型。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">头文件</th>
+          <th style="text-align: center">类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">iostream</td>
+          <td style="text-align: center">istream，wistream 从流读取数据<br/>ostream，wostream向流写入数据<br/>iostream，wiostream读写流</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">fstream</td>
+          <td style="text-align: center">ifstream，wifstream从文件读取数据<br/>ofstream，wofstream向文件写入数据<br/>fstream，wfstream读写文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">sstream</td>
+          <td style="text-align: center">istringstream，wistringstream从stream读取数据<br/>ostringstream，wostringstream向string写入数据<br/>stringstream，wstringstream读写string</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>为了支持宽字符的语言，标准库定义了一组类型与对象来操作wchar_t类型的数据。宽字符版本的类型和函数的名字以一个w开始。</p>
+<p>从概念上讲，IO操作并不会因为设备类型和字符大小而受到影响。例如，我希望通过某个文件读取宽字符数据，其与在终端窗口读取普通字符数据其操作都是一致的，都是通过输入运算符&raquo;。那么这样就存在一个好处，我们可以忽略不同类型的流之间的差异（但并不是不存在差异），使得开发效率得到提高。</p>
+<p>这种忽略流差异的技术通过<strong>继承机制</strong>（inheritance）实现，利用模板，通过使用具有继承关系的类使得我们忽略工作细节。</p>
+<h3 id="io对象无拷贝或赋值">IO对象无拷贝或赋值
+</h3><p>如标题，IO对象不存在拷贝或者赋值初始化的操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="n">of_1</span><span class="p">,</span><span class="n">of_2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">of_1</span><span class="o">=</span><span class="n">of_2</span><span class="p">;</span> <span class="cm">/* 错误：无法对流对象进行赋值 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="nf">print</span><span class="p">(</span><span class="n">ofstream</span><span class="p">);</span> <span class="cm">/* 错误：无法初始化ofstream参数 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">of_2</span><span class="o">=</span><span class="n">print</span><span class="p">(</span><span class="n">of_2</span><span class="p">);</span> <span class="cm">/* 错误：无法拷贝流对象 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由此引申出，无法将返回类型或者形参设置为流类型，同时由于<em>读写一个IO对象会改变其状态</em>，所以常常使用引用方式传递和返回流且此引用不能为const。</p>
+<h3 id="状态条件">状态条件
+</h3><p>IO操作并不是万无一失的，其潜在可能发生的错误，有一些错误能够较为容易修复，但是有一些错误其可能在系统层面，其修复的范围远远超过应用层面，这时就需要一些IO操作上的函数或者标志来帮助程序确定IO操作状态，其称为访问和操作流的
+<strong>条件状态</strong>（condition state)。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">状态名</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>strm</strong>::iostate</td>
+          <td style="text-align: center">iostate是一种机器相关的类型，提供了表达条件状态的完整功能</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>strm</strong>::badbit</td>
+          <td style="text-align: center">指出流已经崩溃</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>strm</strong>::failbit</td>
+          <td style="text-align: center">指出一个IO操作失败</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>strm</strong>::eofbit</td>
+          <td style="text-align: center">指出流已经到达文件结束</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>strm</strong>::goodbit</td>
+          <td style="text-align: center">指出流处于错误状态，此值保证为零</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.eof()</td>
+          <td style="text-align: center">若s流的eofbit置位，则返回true</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.fail()</td>
+          <td style="text-align: center">若s流的failbit或者badbit置位，则返回true</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.bad()</td>
+          <td style="text-align: center">若s流的badbit置位，则返回true</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.good()</td>
+          <td style="text-align: center">若s流处于有效状态，则返回true</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.clear()</td>
+          <td style="text-align: center">将s流中所有条件状态位复位，将流的状态设置为有效，返回void</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.clear(flags)</td>
+          <td style="text-align: center">根据给定的flags标志位，将s流中对应的条件状态位复位。<br/>flags的类型为<strong>strm</strong>.iostate，返回void</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.setstate(flags)</td>
+          <td style="text-align: center">根据给定的flags标志位，将s流中对应的条件状态位置位。<br/>flags的类型为<strong>strm</strong>.iostate，返回void</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">s.rdstate()</td>
+          <td style="text-align: center">返回s流的当前条件状态。<br/>返回值的类型为：<strong>strm</strong>::iostate</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p><strong>strm</strong>是一种IO类型，s为流</p></blockquote>
+<p>当一个流发生错误，那么后续的IO操作都会失败，为了程序的健壮性，通常需要使用流之前判断其是否处于良好状态。最简单的方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"> <span class="k">while</span><span class="p">(</span><span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">word</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* ok,next */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当流出现问题，我们肯定希望查询到错误原因，这个时候就需要依赖条件状态，IO库定义了一个与机器相关的iostate类型，其提供表达流状态的完整功能，作为一个位集合使用。通过位运算符进行一次性检测或者设置多个标志位。</p>
+<p>具体来讲：</p>
+<ul>
+<li>badbit，系统级错误，例如：不可恢复的读写错误。当badbit被置位，流就无法再使用</li>
+<li>failbit，发生可恢复错误，例如：期望读取数值结果读取字符，当错误被修复，流还可以使用。</li>
+<li>当读取文件结束，eofbit和failbit都会被置位，goodbit值为0,表示流未发生错误。</li>
+<li>如果badbit、failbit和eofbit任意一个被置位，则检测状态的条件会失败。</li>
+</ul>
+<p>在上述描写到，IO库定义的一系列查询标志位的函数，当错误位被置位时其对应的函数就会返回true，注意一点，无论是badbit还是eofbit还是其本身failbit被置位，都会同时触发fail()
+函数，所以在上述判断流状态的条件代码实际等价于<code>!fail()</code>。</p>
+<h4 id="管理条件状态">管理条件状态
+</h4><p>在上述列表上介绍了四种管理条件状态的函数，我们可以使用<code>clear()</code>清除所有错误标志位，也可以使用<code>clear(flags)</code>清除指定的错误标志位，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cm">/* 假设cin出现所有的错位状态位 */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 希望复位单一状态位 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">cin</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="n">cin</span><span class="p">.</span><span class="n">rdstate</span><span class="p">()</span><span class="o">&amp;~</span><span class="n">cin</span><span class="p">.</span><span class="n">failbit</span><span class="o">&amp;~</span><span class="n">cin</span><span class="p">.</span><span class="n">badbit</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们可以通过读取当前状态，例如上述代码，我们就可以复位failbit和badbit，但是eofbit保持不变。</p>
+<h3 id="管理输出缓冲">管理输出缓冲
+</h3><p>每个输出流都管理一个缓冲区，用来保存程序读写的数据。</p>
+<p>缓冲机制的存在可以带来很大的性能提升，操作系统可以将（多个）程序的（多个）输出操作组合成为单一的系统级别写操作。</p>
+<p>例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;hello&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;world&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;!&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在前两行表达式就是将输出操作组合在一起，都存放在缓冲区。第三行则进行缓冲区的刷新，那么第四行表达式中数据就和前两行数据不存放在一起（前两行数据已经被刷新掉了）。</p>
+<p>导致缓冲刷新的原因有很多，例如：</p>
+<ul>
+<li>程序正常结束，作为main函数的return操作的一部分，缓冲刷新将会被执行</li>
+<li>缓冲区已满，后入的数据只有在刷新缓冲区后才能继续写入缓冲区</li>
+<li>使用操作符endl显式刷新缓冲区</li>
+<li>在每个输出操作之后，使用操作符unitbuf设置流的内部状态，借此清空缓冲区
+<ul>
+<li>默认情况下，对cerr是设置unitbuf的，因此写到cerr的内容都是立即刷新的</li>
+</ul>
+</li>
+<li>一个输出流可能被关联到另一个流
+<ul>
+<li>当读写被关联的流时，关联到的流的缓冲区会被刷新。例如，默认情况下，cin和cerr都关联到cout。因此，读cin或者写cerr都会导致cout的缓冲区被刷新。</li>
+</ul>
+</li>
+</ul>
+<h4 id="刷新输出缓冲区">刷新输出缓冲区
+</h4><p>在此之前，我们使用操作符endl来进行换行和刷新缓冲区（当时我们可能还没注意到endl具有刷新缓冲区的功能）。类似的，IO库中还存在flush和ends两种操作符也可以执行刷新操作。</p>
+<p>flush刷新缓冲区，但是不输出任何额外的字符（类似endl但不换行）；ends向缓冲区插入一个空字符，然后刷新缓冲区。</p>
+<p>如果想要在每次输出操作后都执行刷新缓冲区的操作，那么我们可以使用unitbuf操作符。它告诉流在接下来的每次写操作之后都会进行一次flush操作。nounitbuf操作符则是重置流，使其恢复使用正常的系统管理的缓冲区刷新机制。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">unitbuf</span><span class="p">;</span> <span class="cm">/* 下面所有的输出操作均会立即刷新缓冲区 */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* .... */</span>
+</span></span><span class="line"><span class="cl"><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">nounitbuf</span><span class="p">;</span> <span class="cm">/* 回到正常的缓冲方式 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>注意</p>
+<p>如果程序崩溃，输出缓冲区是不会被刷新的</p>
+<p>如果程序异常终止，其缓冲区不会被刷新。其所输出的数据很可能停留在输出缓冲区中等待打印</p>
+<p>注意这个细节，如果我们调试一个已经崩溃的程序，需要检查认为已经输出的数据确实已经被刷新了，否则追踪一个没有价值的代码是毫无意义的。</p></blockquote>
+<h4 id="关联输入和输出流">关联输入和输出流
+</h4><p>当一个输入流被关联到一个输出流时，任何试图从输入流读取数据的操作都会先刷新关联的输出流。</p>
+<p>在IO库中，cin默认已经和cout关联在一起，也就是说当执行cin语句时，在此之前的cout的缓冲区
+将会被刷新。</p>
+<blockquote>
+<p>开发</p>
+<p>交互式系统通常应该关联输入流和输出流。这意味着所有的输出，包括用户提示信息，都会在读操作之前被打印出来。</p></blockquote>
+<p>我们可以通过tie函数关联流。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cout</span><span class="p">);</span> <span class="cm">/* 将cin和cout关联 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span> <span class="cm">/* cin不再和其他流关联 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">cin</span><span class="p">.</span><span class="n">tie</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cerr</span><span class="p">);</span> <span class="cm">/* cin与cerr关联 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="82-文件输入输出">8.2 文件输入输出
+</h2><p>在IO库中，头文件fstream定义了三个类型来支持文件IO操作。</p>
+<ul>
+<li>ifstream，从给定文件读取数据</li>
+<li>ofstream，向给定文件写入数据</li>
+<li>fstream，向给定文件读写数据</li>
+</ul>
+<p>ifstream继承于iostream，所以常规操作与cin和cout对象操作类似，同样可以使用IO运算符（&laquo;和&raquo;)来读写文件，也可以使用getline从一个ifstream读取数据。</p>
+<p>除此之外，fstream还具有一些自己独特的操作：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>fstream</strong> fstrm;</td>
+          <td style="text-align: center">创建一个未绑定的文件流</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>fstream</strong> fstrm(s);</td>
+          <td style="text-align: center">创建一个fstream，并打开名为s的文件。s可以是string类型，也可以是指向C风格字符串的指针。同时其构造函数都是explicit的。默认的文件模式mode依赖于fstream的类型</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>fstream</strong> fstrm(s,mode);</td>
+          <td style="text-align: center">与上述类似，但是按照指定mode打开文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">fstrm.open(s)</td>
+          <td style="text-align: center">打开名为s的文件，并将文件与fstrm绑定。s的类型与上述类似，默认的文件mode依赖于fstream的类型。返回void</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">fstrm.close()</td>
+          <td style="text-align: center">关闭与fstrm绑定的文件。返回void</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">fstrm.is_open()</td>
+          <td style="text-align: center">返回一个bool值，指出与fstrm关联的文件是否成功打开且尚未关闭</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p><strong>fstream</strong>是头文件fstream中定义的一个类型，可以是ifstream，也可以是ofstream，当然也可以是fstream。</p></blockquote>
+<h3 id="使用文件流对象">使用文件流对象
+</h3><p>当打算读取某个文件时，我们需要定义一个文件流对象，并将其与文件关联起来。每个文件流对象都定义了一个open成员函数，其完成一些系统相关的操作（定位给定文件，视情况打开读或写模式）</p>
+<p>创建文件流对象，我们可以选择提供文件名（当然，也可以后续提供）。如果提供一个文件名，那么open将会自动调用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ifstream</span> <span class="nf">input</span><span class="p">(</span><span class="n">ifile</span><span class="p">);</span> <span class="cm">/* 构造一个ifstream并打开给定文件 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="n">output</span><span class="p">;</span> <span class="cm">/* 构造一个ofstream对象，并未关联文件 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>文件名可以是string对象，也可以是C风格字符数组。在C++11版本之前仅允许C风格字符数组。</p></blockquote>
+<h4 id="用fstream代替iostream">用fstream代替iostream&amp;
+</h4><p>在前文提到，在要求使用基类型对象的地方，我们可以用继承类型的对象来代替。也就是说，在一个接受iostream类型引用（指针）参数的函数，可以使用一个对应的fstream（或者sstream）类型来调用。</p>
+<h4 id="成员函数open和close">成员函数open和close
+</h4><p>在前文提到，我们可以定义一个文件流对象，但不将其与文件关联起来。</p>
+<p>关联文件使用文件流对象的成员函数open，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ifstream</span> <span class="nf">input</span><span class="p">(</span><span class="n">ifile</span><span class="p">);</span> <span class="cm">/* 构造一个ifstream并给定文件 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="n">output</span><span class="p">;</span> <span class="cm">/* 构造一个ofstream对象，但不关联文件 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">output</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ifile</span><span class="p">);</span> <span class="cm">/* 关联指定文件 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但一个文件流已经被打开了，那么其就保持与对应文件的关联。这个时候，希望再次调用成员函数open将会失败且failbit会被置位。如果希望文件流关联另一个文件，需要关闭已经关联的文件。这个时候就需要用到成员函数close。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">input</span><span class="p">.</span><span class="n">close</span><span class="p">();</span> <span class="cm">/* 关闭文件 */</span>
+</span></span><span class="line"><span class="cl"><span class="n">input</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">ifile_1</span><span class="p">);</span> <span class="cm">/* 关联另一个文件 */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果open成功，那么open将会设置流的状态，这个时候IO库条件状态good()将会为true。</p>
+<p>当一个fstream对象离开其作用域，与之关联的文件会自动关闭。当一个fstream对象被销毁时，close会自动调用。</p>
+<blockquote>
+<p>开发</p>
+<p>由于调用open可能会失败，所以在进行open时应该习惯于进行是否成功的检测。</p></blockquote>
+<h3 id="文件模式">文件模式
+</h3><p>每个文件流都有一个关联的文件模式（file mode），用来指出如何使用文件</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">文件模式</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">in</td>
+          <td style="text-align: center">以读方式打开</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">out</td>
+          <td style="text-align: center">以写方式打开</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">app</td>
+          <td style="text-align: center">每次写操作前均定位到文件末尾</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">ate</td>
+          <td style="text-align: center">打开文件后立即定位到文件末尾</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">trunc</td>
+          <td style="text-align: center">截断文件</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">binary</td>
+          <td style="text-align: center">以二进制方式进行IO</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p>每个文件流类型都定义了一个默认的文件模式。ifstream默认以in模式打开，ofstream默认以out模式打开，fstream默认以in和out模式打开。</p></blockquote>
+<p>无论那种方式打开文件，我们都可以指定文件模式。当然指定是有限制的：</p>
+<ul>
+<li>只可以对ofstream或者fstream对象设定out模式</li>
+<li>只可以对ifstream或者fstream对象设定in模式</li>
+<li>trunc模式的设定前提是out模式被设定</li>
+<li>app模式设定前提是trunc模式<strong>没有</strong>被设定。在app模式下，即便没有显式指定out模式，文件也总是以输出方式被打开</li>
+<li>默认情况下，out模式打开的文件是会被截断的（即便没有设定trunc），如果想要保留则需要指定app模式，或者同时指定in模式，使打开文件同时进行读写操作</li>
+<li>ate和binary模式可用用于任何类型的文件流对象，且可以与其他任何文件模式组合使用</li>
+</ul>
+<p>在上文我们提到out模式默认会截断，即清空文件已有数据。所以如果希望保留则需要<strong>显式指定app或者in模式</strong>。</p>
+<h2 id="83-string流">8.3 string流
+</h2><p>sstream头文件定义了三种类型来支持内存IO。</p>
+<p>和fstream和iostream类似，sstream的三种类型分别对string读取数据、写入数据和读取写入数据：istringstream、ostringstream、stringstream。</p>
+<p>当然，除了继承iostream的操作，sstream也具有对内存IO类型的特殊操作：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: center">操作</th>
+          <th style="text-align: center">解释</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>sstream</strong> strm;</td>
+          <td style="text-align: center">strm是一个未绑定的sstream对象</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>sstream</strong> strm(s);</td>
+          <td style="text-align: center">strm作为sstream对象，保存string s的一个拷贝</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">strm.str()</td>
+          <td style="text-align: center">返回strm所保存的string的拷贝</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">strm.str(s)</td>
+          <td style="text-align: center">将string s拷贝到strm中。，返回void</td>
+      </tr>
+  </tbody>
+</table></div>
+<blockquote>
+<p><strong>sstream</strong>是头文件sstream中定义的一个类型。</p></blockquote>
+<p>当我们的某些工作是对整行文本进行处理，而其他工作是处理行内的单个单词时，通常考虑使用istringstream。</p>
+<p>当我们逐步构造输出，希望最后一起打印时，ostringstream通常是我们的一般解。</p>
+<h2 id="总结">总结
+</h2><p>fstream和sstream都继承于iostream，所以在操作上三者具有很多相同点。</p>
+<p>对于声明在语句外的流，可以通过在语句块内部使用clear函数解决EOF问题。</p>
+<p>条件状态的特性需要记牢！</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BC%80%E5%A7%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第一章 开始</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%83%E7%AB%A0-%E7%B1%BB/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第七章 类</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%90%91%E9%87%8F%E5%92%8C%E6%95%B0%E7%BB%84/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第三章 字符串、向量和数组</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第九章 顺序容器</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c-%E5%9F%BA%E7%A1%80-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%8F%98%E9%87%8F%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg" loading="lazy" data-key="" data-hash="https://s3.bmp.ovh/imgs/2024/11/23/f8eb19dce3c8aec6.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C&#43;&#43; 基础： 第二章 变量和基本类型</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Free-Aaron-Li/utterances"
+        issue-term="pathname"
+        
+        label="comment"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 Aaron
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

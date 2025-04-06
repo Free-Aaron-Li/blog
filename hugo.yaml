@@ -77,7 +77,7 @@ params:
 
     comments:
         enabled: true
-        provider: disqus
+        provider: utterances
 
         disqusjs:
             shortname:
