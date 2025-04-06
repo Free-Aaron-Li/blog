@@ -1,0 +1,7 @@
+/**/public/
+/**/resources/
+
+# hugo
+.hugo
+.hugo_build.lock
+hugo
